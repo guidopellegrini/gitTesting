@@ -1,3 +1,3 @@
 
 
-base project bugFix
+base project bugFix + debug
