@@ -1,42 +1,56 @@
 
 <div class="container">
-<section>
-  <swiper
-    #swiperRef
-    [effect]="'coverflow'"
-    [grabCursor]="true"
-    [centeredSlides]="true"
-    [slidesPerView]="'auto'"
-    [coverflowEffect]="{
-      rotate: 0,
-      stretch: 0,
-      depth: 100,
-      modifier: 1,
-      slideShadows: true
-    }"
-    [keyboard]="{
-      enabled: true
-    }"
-    [pagination]="{
-      clickable: true
-    }"
-    [navigation]="true"
-    [pagination]="false"
-    [mousewheel]="true"
-    [virtual]="true"
-    class="mySwiper"
-  >
-  <ng-template swiperSlide *ngFor="let slide of slides">
-    <div>Slide</div>
-  </ng-template>
-  </swiper>
-</section>
+  <section>
+    <swiper
+      #swiperRef
+      [effect]="'coverflow'"
+      [grabCursor]="true"
+      [slidesPerView]="5"
+      [centeredSlides]="true"
+      [coverflowEffect]="{
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true
+      }"
+      [keyboard]="{
+        enabled: true
+      }"
+      [pagination]= "{
+        dynamicBullets: true,
+        el: '.swiper-pagination',
+        type: 'fraction'
+      }"
+      [mousewheel]="true"
+      [slideToClickedSlide]="true"
+      [virtual]="false"
+      [navigation]="true"
+      class="mySwiper"
+      (slideChange)="onSwiper($event)"
+    >
+      <ng-template swiperSlide *ngFor="let pokemon of pokemons">
+        <div class="testimonialBox">
+          <div class="testimonialContent">
+            <div class="testimonialAvatar">
+              <img src="{{pokemon.sprites.front_default}}" alt="">
+            </div>
+            <div class="testimonialText">
+              <h3>{{pokemon.name}}</h3>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
 
+    <div class="buttons-container">
+      <button mat-raised-button class="step-button" color="accent"(click)="slideTo(-30)">-30</button>
+      <button mat-raised-button class="step-button" color="accent"(click)="slideTo(-10)">-10</button>
+      <button mat-raised-button class="step-button" color="accent"(click)="slideTo(10)">+10</button>
+      <button mat-raised-button class="step-button" color="accent"(click)="slideTo(30)">+30</button>
+    </div>
 
-
-
-
-
+  </section>
 </div>
 
 

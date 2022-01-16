@@ -27,6 +27,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatSliderModule} from '@angular/material/slider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatExpansionModule } from '@angular/material/expansion';
 
@@ -34,6 +35,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
   imports: [
     CommonModule,
     MatButtonModule,
+    MatSliderModule,
     MatCardModule,
     MatCheckboxModule,
     MatDatepickerModule,
@@ -68,6 +70,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatSliderModule,
     MatDatepickerModule,
     MatDialogModule,
     MatFormFieldModule,

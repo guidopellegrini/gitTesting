@@ -7,8 +7,6 @@
 
 }
 
-
-
 section {
   position: relative;
   width: 100%;
@@ -16,10 +14,12 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background: #2196f3;
   overflow: hidden;
 }
 
+// Swiper :
 
 @import "~swiper/css";
 @import "~swiper/css/effect-coverflow";
@@ -61,3 +61,10 @@ section {
 .swiper-slide-shadow-left, .swiper-slide-shadow-right{
   background-image: none !important;
 }
+
+.step-button{
+  border-radius: 20px !important;
+  margin-right: 20px !important;
+}
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AppService } from './app.service';
 import { Pokemon, PokemonListDto, PokemonListItem } from './_core/models';
 import { SwiperComponent } from "swiper/angular";
@@ -6,6 +6,7 @@ import { SwiperComponent } from "swiper/angular";
 // import Swiper core and required modules
 import SwiperCore, { EffectCoverflow, Keyboard, Mousewheel, Navigation, Pagination, Virtual } from "swiper";
 import { map } from 'rxjs/operators';
+import { MatSlider } from '@angular/material/slider';
 
 // install Swiper modules
 SwiperCore.use([EffectCoverflow, Pagination, Navigation, Keyboard, Mousewheel, Virtual]);
@@ -20,36 +21,37 @@ export class AppComponent implements OnInit {
   title = 'app';
   pokemons: Pokemon[];
   pokemon: Pokemon;
+  pokemonId: number = 1;
 
-  slides = Array.from({ length: 150 }).map((_, index) => `Slide ${index + 1}`);
   @ViewChild('swiperRef', { static: false }) swiperRef?: SwiperComponent;
+  @ViewChild('matSlider') matSlider: MatSlider;
 
   appendNumber = 150;
   prependNumber = 1;
 
-  prepend() {
-    this.swiperRef.swiperRef.virtual.prependSlide([
-      'Slide ' + --this.prependNumber,
-      'Slide ' + --this.prependNumber,
-    ]);
-  }
-
-  append() {
-    this.swiperRef.swiperRef.virtual.appendSlide(
-      'Slide ' + ++this.appendNumber
-    );
-  }
-
-  slideTo(index: number) {
-    this.swiperRef.swiperRef.slideTo(index - 1, 0);
-  }
-
   constructor(
-    private appService: AppService
+    private appService: AppService,
+    private cdr: ChangeDetectorRef
   ) {  }
 
+  slideTo(step: number) {
+    this.swiperRef.swiperRef.slideTo(this.swiperRef.swiperRef.activeIndex + step);
+    this.cdr.detectChanges();
+  }
+
+  onSwiper(swiper) {
+    this.cdr.detectChanges();
+  }
+
+  formatLabel(value: number) {
+    if (value >= 150) {
+      return 'N°' + Math.round(value);
+    }
+    return value;
+  }
+
   ngOnInit (): void {
-    // this.getPokemons();
+    this.getPokemons();
   }
 
   getPokemons() : void {
