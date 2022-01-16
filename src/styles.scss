@@ -1,0 +1,80 @@
+
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #292929;
+  color: white;
+  margin: 20px;
+}
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-myaccent: (
+  50: #f9eeed,
+  100: #f0d5d2,
+  200: #e6bab4,
+  300: #db9e95,
+  400: #d4897f,
+  500: #cc7468,
+  600: #c76c60,
+  700: #c06155,
+  800: #b9574b,
+  900: #ad443a,
+  A100: #fffbfb,
+  A200: #ffccc8,
+  A400: #ff9d95,
+  A700: #ff867b,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$app-proveedores-primary: mat-palette($md-myaccent);
+$app-proveedores-accent: mat-palette($mat-green, 400);
+
+
+// The warn palette is optional (defaults to red).
+$app-proveedores-warn: mat-palette($mat-red, 400);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$app-proveedores-theme: mat-light-theme(
+  (
+    color: (
+      primary: $app-proveedores-primary,
+      accent: $app-proveedores-accent,
+      warn: $app-proveedores-warn,
+
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-proveedores-theme);
